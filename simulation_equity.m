@@ -137,27 +137,31 @@ box on;
 set(gca,'FontSize',20);
 set(gca, 'Layer', 'top');
 set(gca,'TickLabelInterpreter','latex')
-for j = 1:n
+for j = n:-1:1
     aux_x = (0:T_sim)';
-    aux_y = sum(x(j:n,1:T_sim+1),1)';
+    aux_y = sum(x(1:j,1:T_sim+1),1)';
     [aux_x,aux_y] = stairs_vector(aux_x,aux_y);
     if j==1
-        area(aux_x,aux_y,'LineWidth',2,'FaceColor',color.orange);
+        area(aux_x,aux_y,'LineWidth',2,'FaceColor',color.blue);
     elseif j ==2
-        area(aux_x,aux_y,'LineWidth',2,'FaceColor',color.green);
+        area(aux_x,aux_y,'LineWidth',2,'FaceColor',color.red);
     end
 end
-for j = 1:n
-    plot([0 T_sim],[sum(w_star(j:n)) sum(w_star(j:n))],'--','Color',color.black,'LineWidth',3);
+for j = n:-1:1
+    if j == 1
+        plot([0 T_sim],[sum(w_star(1:j)) sum(w_star(1:j))],'--','Color','black','LineWidth',3);
+    else
+        plot([0 T_sim],[sum(w_star(1:j)) sum(w_star(1:j))],'--','Color','black','LineWidth',3,'HandleVisibility','off');
+    end
 end
-legend({'$\mathbf{w}^{A_t}_1$',' $\mathbf{w}^{A_t}_2$', '$\,\mathbf{w}^\star$'},'Location','northeast','Interpreter','latex');
+legend({'$\mathbf{w}^{A_t}_2$','$\mathbf{w}^{A_t}_1$','$\,\mathbf{w}^\star$'},'Location','northeast','Interpreter','latex');
 xlabel('$t$','Interpreter','latex');
 ylim([0 1]);
 xlim ([0 100]);
 % Save figure to .fig and .png formats
-savefig('./figures/decision_Eqt.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'./figures/decision_Eqt.png','Resolution',300);
+% savefig('./figures/decision_Eqt.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'./figures/decision_Eqt.png','Resolution',300);
 hold off;
 
 % AC level
@@ -193,9 +197,9 @@ xlabel('$t$','Interpreter','latex');
 xlim ([0 100]);
 ylim ([0 1.5]);
 % Save figure to .fig and .png formats
-savefig('./figures/AC_Eqt.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'./figures/AC_Eqt.png','Resolution',300);
+% savefig('./figures/AC_Eqt.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'./figures/AC_Eqt.png','Resolution',300);
 hold off;
 
 % System's cost
@@ -220,9 +224,9 @@ ylim([-3 35]);
 hold off;
 xlim ([0 100]);
 % Save figure to .fig and .png formats
-savefig('./figures/cost_Eqt.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'./figures/cost_Eqt.png','Resolution',300);
+% savefig('./figures/cost_Eqt.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'./figures/cost_Eqt.png','Resolution',300);
 hold off;
 
 % Sensitivity to latency
@@ -255,9 +259,9 @@ hold off;
 xlim ([0 100]);
 ylim ([-15 5]);
 % Save figure to .fig and .png formats
-savefig('./figures/sensitivity_Eqt.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'./figures/sensitivity_Eqt.png','Resolution',300);
+% savefig('./figures/sensitivity_Eqt.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'./figures/sensitivity_Eqt.png','Resolution',300);
 hold off;
 
 % Equity vs Equality
@@ -308,24 +312,25 @@ aux_y1 = [E_L'+InEqt' fliplr(E_L'-InEqt')]';
 aux_y1(aux_y1<0) = 0;
 [aux_x1,aux_y1] = stairs_vector(aux_x1,aux_y1);
 fill(aux_x1,aux_y1,'k',...
-    'LineWidth',2,'FaceColor',color.blue,'FaceAlpha',0.5,'EdgeAlpha',0);
+    'LineWidth',2,'FaceColor',color.green,'FaceAlpha',0.5,'EdgeAlpha',0);
 aux_x2 = [0:T_sim fliplr(0:T_sim)]';
 aux_y2 = [E_L_per_weight'+InEql' fliplr(E_L_per_weight'-InEql')]';
 aux_y2(aux_y2<0) = 0;
 [aux_x2,aux_y2] = stairs_vector(aux_x2,aux_y2);
 fill(aux_x2,aux_y2,'k',...
-    'LineWidth',2,'FaceColor',color.red,'FaceAlpha',0.5,'EdgeAlpha',0);
-stairs(0:T_sim,E_L,'LineWidth',2.5,'Color',color.blue);
-stairs(0:T_sim,E_L_per_weight,'LineWidth',2.5,'Color',color.red);
-stairs(aux_x1,aux_y1,'LineWidth',1,'Color',color.blue);
-stairs(aux_x2,aux_y2,'LineWidth',1,'Color',color.red);
+    'LineWidth',2,'FaceColor',color.orange,'FaceAlpha',0.5,'EdgeAlpha',0);
+stairs(0:T_sim,E_L,'LineWidth',2.5,'Color',color.green);
+stairs(0:T_sim,E_L_per_weight,'LineWidth',2.5,'Color',color.orange);
+stairs(aux_x1,aux_y1,'LineWidth',1,'Color',color.green);
+stairs(aux_x2,aux_y2,'LineWidth',1,'Color',color.orange);
 legend({'$\mathrm{E}[L_t] \pm \sqrt{\mathrm{Var}[L_t]}$', '$\mathrm{E}[L_t/W] \pm \sqrt{\mathrm{Var}[L_t/W]}$'},'Interpreter','latex','Location','northeast');
 xlabel('$t$','Interpreter','latex');
 ylim([1.3 2.5]);
 % Save figure to .fig and .png formats
-savefig('./figures/L_Eqt.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'./figures/L_Eqt.png','Resolution',300);
+% savefig('./figures/L_Eqt.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'./figures/L_Eqt.png','Resolution',300);
+% exportgraphics(gcf,'./figures/L_Eqt.pdf');
 hold off;
 
 figure('Position',4*[0 0 192 144/2]);
@@ -336,17 +341,17 @@ set(gca,'FontSize',20);
 set(gca, 'Layer', 'top');
 set(gca,'TickLabelInterpreter','latex');
 % set(gca,'XScale','log')
-stairs(0:T_sim,InEqt,'LineWidth',2.5,'Color',color.blue);
-stairs(0:T_sim,InEql,'LineWidth',2.5,'Color',color.red);
-plot([0 1 T_sim],InEqt_Eqt*ones(1,3),'--','LineWidth',2,'Color',color.blue);
-plot([0 1 T_sim],InEql_Eqt*ones(1,3),'--','LineWidth',2,'Color',color.red);
+stairs(0:T_sim,InEqt,'LineWidth',2.5,'Color',color.green);
+stairs(0:T_sim,InEql,'LineWidth',2.5,'Color',color.orange);
+plot([0 1 T_sim],InEqt_Eqt*ones(1,3),'--','LineWidth',2,'Color',color.green);
+plot([0 1 T_sim],InEql_Eqt*ones(1,3),'--','LineWidth',2,'Color',color.orange);
 legend({'$\mathrm{InEqt}_t$', '$\mathrm{InEql}_t$'},'Interpreter','latex','Location','northeast');
 xlabel('$t$','Interpreter','latex');
 ylim([0 0.6]);
 % Save figure to .fig and .png formats
-savefig('./figures/Unf_Eqt.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'./figures/Unf_Eqt.png','Resolution',300);
+% savefig('./figures/Unf_Eqt.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'./figures/Unf_Eqt.png','Resolution',300);
 hold off;
 
 %% Save simulation results

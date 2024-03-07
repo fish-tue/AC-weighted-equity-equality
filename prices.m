@@ -94,16 +94,20 @@ for i = 1:N_points
 end
 yyaxis left
 ylim([0 1]);
-plot(w_points,n_aux(1,:),'LineWidth',2,'Color',color.blue);
+plot(w_points,n_aux(1,:),'LineWidth',2,'Color',color.green);
 plot([theta_star theta_star],[0 1],'--','LineWidth',2,'Color','k');
 yyaxis right
-plot(w_points,n_aux(2,:),'LineWidth',2,'Color',color.red);
+plot(w_points,n_aux(2,:),'LineWidth',2,'Color',color.orange);
+ax = gca;
+ax.YAxis(1).Color = color.green;
+ax.YAxis(2).Color = color.orange;
 legend({'$n_1(w,\theta^\star)$','$\theta_\star$','$f_W(w)$'},'Interpreter','latex','Location','northeast');
 xlabel('$w$','Interpreter','latex');
 % Save figure to .fig and .svg formats
-savefig('./figures/n1.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'figures/n1.png','Resolution',300);
+% savefig('./figures/n1.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'figures/n1.png','Resolution',300);
+% exportgraphics(gcf,'figures/n1.pdf');
 hold off;
 
 % Plot prices
@@ -120,17 +124,18 @@ p_aux = zeros(2,N_points);
 for i = 1:N_points 
     p_aux(:,i) = pEql(w_points(i));
 end
-plot(w_points,p_aux(1,:),'LineWidth',2,'Color',color.orange);
-plot(w_points,p_aux(2,:),'LineWidth',2,'Color',color.green);
+plot(w_points,p_aux(1,:),'LineWidth',2,'Color',color.blue);
+plot(w_points,p_aux(2,:),'LineWidth',2,'Color',color.red);
 plot([theta_star theta_star],[-S S],'--','LineWidth',2,'Color','k');
-plot([weight_min weight_max],pEqt_cte(1)*ones(1,2),'--','LineWidth',2,'Color',color.orange);
-plot([weight_min weight_max],pEqt_cte(2)*ones(1,2),'--','LineWidth',2,'Color',color.green);
+plot([weight_min weight_max],pEqt_cte(1)*ones(1,2),'--','LineWidth',2,'Color',color.blue);
+plot([weight_min weight_max],pEqt_cte(2)*ones(1,2),'--','LineWidth',2,'Color',color.red);
 legend({'$\mathbf{p}_1^{\mathrm{Eql}}$', '$\mathbf{p}_2^{\mathrm{Eql}}$','$\theta_\star$','$\mathbf{p}_1^{\mathrm{Eqt}}$', '$\mathbf{p}_2^{\mathrm{Eqt}}$'},'Interpreter','latex','Location','northeast','NumColumns',2);
 xlabel('$w$','Interpreter','latex');
 % Save figure to .fig and .png formats
-savefig('./figures/prices.fig');
-set(gcf,'renderer','Painters');
-exportgraphics(gcf,'figures/prices.png','Resolution',300);
+% savefig('./figures/prices.fig');
+% set(gcf,'renderer','Painters');
+% exportgraphics(gcf,'figures/prices.png','Resolution',300);
+% exportgraphics(gcf,'figures/prices.pdf');
 hold off;
 
 %% Save prices
