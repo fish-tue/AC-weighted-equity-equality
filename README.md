@@ -4,7 +4,7 @@
 
 This repository contains the **source-code of the methods and simulations** in
 
-L. Pedroso, A. Agazzi, W.P.M.H. Heemels and M. Salazar, **Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality**, 2024 (submitted).
+L. Pedroso, A. Agazzi, W.P.M.H. Heemels and M. Salazar, **Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality**, *63nd IEEE Conference on Decision and Control*, 2024. doi: [10.48550/arXiv.2403.03999](https://doi.org/10.48550/arXiv.2403.03999). (in press)
 
 See the post [Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality](https://fish-tue.github.io/AC-weighted-eqt-eql/) in the [FISH Project's Website](https://fish-tue.github.io) for **step-by-step instructions** on how the illustrative numerical results were obtained from the source code made available.
 
@@ -12,14 +12,16 @@ See the post [Fair Artificial Currency Incentives in Repeated Weighted Congestio
 
 If you use this repository, **please reference the publication below**.
 
-L. Pedroso, A. Agazzi, W.P.M.H. Heemels and M. Salazar, **Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality**, 2024 (submitted).
+L. Pedroso, A. Agazzi, W.P.M.H. Heemels and M. Salazar, **Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality**, *63nd IEEE Conference on Decision and Control*, 2024. doi: [10.48550/arXiv.2403.03999](https://doi.org/10.48550/arXiv.2403.03999). (in press)
 
 ```bib
-@article{PedrosoAgazziEtAl2024,
-  author = {Leonardo Pedroso and Andrea Agazzi and W. P. M. H. Heemels and Mauro Salazar},
-  title = {Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality}, 
-  year = {2024},
-  note = (submitted)
+@inproceedings{PedrosoAgazziEtAl2024EqtEql,
+author = {Leonardo Pedroso and Andrea Agazzi and W. P. M. H. Heemels and Mauro Salazar},
+title = {Fair Artificial Currency Incentives in Repeated Weighted Congestion Games: Equity vs. Equality},
+booktitle = {63nd IEEE Conference on Decision and Control},
+year = {2024},
+doi = {10.48550/arXiv.2403.03999},
+note = {in press}
 }
 ```
 
